@@ -37,6 +37,7 @@ ehthumbs.db
 Thumbs.db
 
 /.idea/workspace.xml
+.idea/**/workspace.xml
 
 
 # Compiled class file
