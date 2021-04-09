@@ -1,5 +1,4 @@
-import static org.junit.Assert.*;
-
+import algorithm.SortAlgorithm;
 import org.junit.Test;
 
 import java.util.Arrays;
