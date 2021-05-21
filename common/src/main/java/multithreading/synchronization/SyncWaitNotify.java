@@ -37,7 +37,7 @@ class Processor {
     public void produce() throws InterruptedException{
         synchronized (this){
             System.out.println("produce() is running ...");
-            wait(); // It releases the intrinsic lock after calling wait() and it will re-obtain the intrinsic lock after another thread notifies it
+            this.wait(); // It releases the intrinsic lock after calling wait() and it will re-obtain the intrinsic lock after another thread notifies it
             System.out.println("produce() ends");
         }
     }
@@ -45,7 +45,7 @@ class Processor {
     public void consume() throws InterruptedException{
         synchronized (this){
             System.out.println("consume() is running ...");
-            notify();
+            this.notify();
             Thread.sleep(2000);
             System.out.println("consume() ends");
         } // release lock after executing the block only
