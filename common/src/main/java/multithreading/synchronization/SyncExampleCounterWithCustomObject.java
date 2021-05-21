@@ -2,20 +2,28 @@ package multithreading.synchronization;
 
 /**
  * @author huangshiwei on 2021-05-20
+ * It is good to use different object/class intrinsic locks for two indepedent methods
+ * because they are able to be executed at the same time by multiple threads.
  */
-public class SyncExampleCounterTwoSynchronizedMethods {
+public class SyncExampleCounterWithCustomObject {
 
     private static int counter1 = 0;
     private static int counter2 = 0;
+    private static final Object object1 = new Object();
+    private static final Object object2 = new Object();
 
-    private static synchronized void incrementCounter1(){
-        System.out.println("counter1="+ counter1);
-        counter1++;
+    private static void incrementCounter1(){
+        synchronized (object1) {
+            System.out.println("counter1=" + counter1);
+            counter1++;
+        }
     }
 
-    private static synchronized void incrementCounter2(){
-        System.out.println("counter2="+ counter2);
-        counter2++;
+    private static void incrementCounter2(){
+        synchronized (object2) {
+            System.out.println("counter2=" + counter2);
+            counter2++;
+        }
     }
 
     public static void main(String[] args){
