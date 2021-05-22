@@ -48,7 +48,7 @@ class Processor {
             this.notify();
             Thread.sleep(2000);
             System.out.println("consume() ends");
-        } // release lock after executing the block only
+        } // release lock after executing the block only or call wait() explicitly
     }
 
 }
