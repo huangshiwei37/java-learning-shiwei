@@ -45,7 +45,7 @@ class Processor {
     public void consume() throws InterruptedException{
         synchronized (this){
             System.out.println("consume() is running ...");
-            this.notify();
+            this.notify(); // it doesn't notify immediately util the end of the synchronized block or calling wait() explicitly
             Thread.sleep(2000);
             System.out.println("consume() ends");
         } // release lock after executing the block only or call wait() explicitly
