@@ -34,6 +34,15 @@ public class SingleThreadExecutorExampleCallable {
         }
         executorService.shutdown();
 
+        System.out.println("Finished all tasks");
+        try {
+            System.out.println("First Task Final result: " + resultList.get(0).get());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
     }
 }
 
