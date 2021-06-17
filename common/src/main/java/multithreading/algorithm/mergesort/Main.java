@@ -10,18 +10,27 @@ import java.util.concurrent.ForkJoinPool;
 public class Main {
 
     public static void main(String[] args) {
-        int[] nums = generateRandomNums(10000);
-        long startTime = System.currentTimeMillis();
-        System.out.println("BeforeSort nums=" + Arrays.toString(nums));
+        int count = (int)1e6;
+        System.out.println("count="+count);
+        int[] nums = generateRandomNums(count);
+        int[] nums2 = Arrays.copyOfRange(nums, 0, nums.length);
 
+        //parallel
+        long startTime = System.currentTimeMillis();
         ParallelMergeSortTask task = new ParallelMergeSortTask(nums);
         int processors = Runtime.getRuntime().availableProcessors();
         System.out.println("processors="+processors);
         ForkJoinPool forkJoinPool = new ForkJoinPool(processors);
         forkJoinPool.invoke(task);
-
-        System.out.println("AfterSort nums=" + Arrays.toString(nums));
+//        System.out.println("AfterSort nums=" + Arrays.toString(nums));
         System.out.println("Parallel elapsedTime=" + (System.currentTimeMillis() - startTime));
+
+        //sequential
+        startTime = System.currentTimeMillis();
+        SequentialMergeSortService sequentialMergeSortService = new SequentialMergeSortService();
+        sequentialMergeSortService.mergeSort(nums2);
+//        System.out.println("AfterSort nums=" + Arrays.toString(nums2));
+        System.out.println("Sequential elapsedTime=" + (System.currentTimeMillis() - startTime));
     }
 
     private static int[] generateRandomNums(int length){
