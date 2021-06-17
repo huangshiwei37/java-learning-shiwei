@@ -1,5 +1,6 @@
 package multithreading.algorithm.mergesort;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.ForkJoinPool;
 
@@ -11,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
         int[] nums = generateRandomNums(10000);
         long startTime = System.currentTimeMillis();
-//        System.out.println("BeforeSort nums=" + Arrays.toString(nums));
+        System.out.println("BeforeSort nums=" + Arrays.toString(nums));
 
         ParallelMergeSortTask task = new ParallelMergeSortTask(nums);
         int processors = Runtime.getRuntime().availableProcessors();
@@ -19,7 +20,7 @@ public class Main {
         ForkJoinPool forkJoinPool = new ForkJoinPool(processors);
         forkJoinPool.invoke(task);
 
-//        System.out.println("AfterSort nums=" + Arrays.toString(nums));
+        System.out.println("AfterSort nums=" + Arrays.toString(nums));
         System.out.println("Parallel elapsedTime=" + (System.currentTimeMillis() - startTime));
     }
 
